@@ -79,3 +79,28 @@ router.delete("/:id", requireRole(Role.ADMIN), async (req, res, next) => {
 });
 
 export default router;
+router.post("/reset-data", requireRole(Role.ADMIN), async (req, res, next) => {
+  const { deliveries, routes, customers, drivers } = req.body;
+
+  try {
+    if (deliveries) {
+      await prisma.delivery.deleteMany({});
+    }
+    if (routes) {
+      await prisma.route.deleteMany({});
+    }
+    if (customers) {
+      await prisma.customer.deleteMany({});
+    }
+    if (drivers) {
+      await prisma.driver.deleteMany({});
+    }
+
+    res.json({ 
+      success: true, 
+      message: 'Dados selecionados foram zerados com sucesso!' 
+    });
+  } catch (error) {
+    next(error);
+  }
+});
