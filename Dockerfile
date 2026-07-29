@@ -30,4 +30,4 @@ EXPOSE 4000
 
 # Entrypoint: aplica migrations, roda seed se necessário e inicia
 COPY --chown=node:node docker-entrypoint.sh ./
-CMD ["sh", "-c", "npx prisma migrate deploy && sh docker-entrypoint.sh"]
+CMD ["sh", "-c", "npx prisma migrate deploy && npx prisma db seed && sh docker-entrypoint.sh"]
