@@ -80,6 +80,6 @@ registerSockets(io);
 
 const PORT = Number(process.env.PORT ?? 4000);
 httpServer.listen(PORT, "0.0.0.0", () => {
-  console.log(`RotaCerta API rodando em http://localhost:${PORT}`);
+  console.log(`RotaCerta API rodando na porta ${PORT}`);
   console.log(`Socket.IO ativo`);
 });
